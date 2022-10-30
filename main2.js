@@ -1,5 +1,5 @@
 // VOORRAAD ARRAY MET TV'S
-const inventory = [
+const inventory2 = [
     {
         type: '43PUS6504/12',
         name: '4K TV',
@@ -161,38 +161,57 @@ const inventory = [
         sold: 8,
     },
 ];
-//Opdracht 1A
-const tvs = inventory.map((name) => {
-    return name.name
-})
-console.log(tvs)
-//----------------------------------------------------------------------------------------//
-//opdracht 1B
-const runOut = inventory.filter((sold) => {
+
+
+//Opdracht 2a
+let sum = 0
+const runOut2 = inventory2.filter((sold) => {
     return sold.originalStock < 6
 })
-//Ik wist niet welke methode goed zou zijn dus heb ik er 2 variante gemaakt.
-console.log(runOut)
-const runOut1 = inventory.map((sold) => {
-    return "Er zijn " + sold.sold + ' verkocht van de ' + sold.name +  ' en er waren er ' + sold.originalStock + ' in stock'
-})
-console.log(runOut1)
+
+ for (let i = 0; i < runOut2.length; i++) {
+     sum++;
+ }
+ console.log("Totale aantal is: " + sum)
 //----------------------------------------------------------------------------------------//
-//opdracht 1C
-inventory.map((ambi) => {
-    if (ambi.options.ambiLight === true) {
-        console.log("Deze " + ambi.name + " Heeft Ambilight")
-    } else {
-        console.log("Deze " + ambi.name + " Heeft geen Ambilight")
-    }
-});
+//opdracht 2b
+const node = document.createElement("P");
+ node.setAttribute("id", "green")
+ const textNode = document.createTextNode("Totale aantal is: " + sum);
+node.appendChild(textNode);
+ console.log(textNode)
+document.getElementById("tekst").appendChild(node)
+document.getElementById("green").style.color = "green"
 //----------------------------------------------------------------------------------------//
-//opdracht 1D
-function sortPrice() {
-    const price = inventory.sort( (a, b) =>{
-        console.log("Test: " + a.price)
-        return (a.price) - (b.price)
-    })
-    console.log(price())
+//Opdracht 2c
+let total = 0
+for (let j = 0; j < inventory2.length; j++) {
+    total = total + inventory2[j].originalStock;
 }
-sortPrice()
+console.log(total)
+//----------------------------------------------------------------------------------------//
+//opdracht 2d
+const node1 = document.createElement("P");
+node1.setAttribute("id", "blue")
+const textNode1 = document.createTextNode("Totale aantal is: " + total);
+node1.appendChild(textNode1);
+console.log(textNode1)
+document.getElementById("tekst").appendChild(node1)
+document.getElementById("blue").style.color = "blue"
+//----------------------------------------------------------------------------------------//
+//opdracht 2e
+let sell = 0
+for (let k = 0; k < inventory2.length; k++) {
+    let stock = inventory2[k].originalStock - inventory2[k].sold;
+    sell = sell + stock
+}
+//----------------------------------------------------------------------------------------//
+//opdracht 2d
+const node2 = document.createElement("P");
+node2.setAttribute("id", "red")
+const textNode2 = document.createTextNode("Nog te verkopen: " + sell);
+node2.appendChild(textNode2);
+console.log(textNode2)
+document.getElementById("tekst").appendChild(node2)
+document.getElementById("red").style.color = "red"
+

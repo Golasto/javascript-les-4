@@ -1,5 +1,5 @@
 // VOORRAAD ARRAY MET TV'S
-const inventory = [
+const inventory3 = [
     {
         type: '43PUS6504/12',
         name: '4K TV',
@@ -161,38 +161,25 @@ const inventory = [
         sold: 8,
     },
 ];
-//Opdracht 1A
-const tvs = inventory.map((name) => {
-    return name.name
-})
-console.log(tvs)
 //----------------------------------------------------------------------------------------//
-//opdracht 1B
-const runOut = inventory.filter((sold) => {
-    return sold.originalStock < 6
-})
-//Ik wist niet welke methode goed zou zijn dus heb ik er 2 variante gemaakt.
-console.log(runOut)
-const runOut1 = inventory.map((sold) => {
-    return "Er zijn " + sold.sold + ' verkocht van de ' + sold.name +  ' en er waren er ' + sold.originalStock + ' in stock'
-})
-console.log(runOut1)
-//----------------------------------------------------------------------------------------//
-//opdracht 1C
-inventory.map((ambi) => {
-    if (ambi.options.ambiLight === true) {
-        console.log("Deze " + ambi.name + " Heeft Ambilight")
-    } else {
-        console.log("Deze " + ambi.name + " Heeft geen Ambilight")
-    }
-});
-//----------------------------------------------------------------------------------------//
-//opdracht 1D
-function sortPrice() {
-    const price = inventory.sort( (a, b) =>{
-        console.log("Test: " + a.price)
-        return (a.price) - (b.price)
-    })
-    console.log(price())
+//Opdracht 3a
+const node3 = document.createElement("ul");
+document.getElementById("tekst").appendChild(node3)
+for (let i = 0; i < inventory3.length; i++) {
+    const node = document.createElement("li")
+    node.innerHTML = inventory3[i].brand
+    node3.appendChild(node)
 }
-sortPrice()
+//----------------------------------------------------------------------------------------//
+//opdracht 3b
+function getBrands(arr) {
+    const node4 = document.createElement("ul");
+    document.getElementById("tekst").appendChild(node4)
+    for (let i = 0; i < arr.length; i++) {
+        const node = document.createElement("li")
+        node.innerHTML = arr[i].brand
+        node4.appendChild(node)
+    }
+}
+getBrands(inventory3)
+//----------------------------------------------------------------------------------------//

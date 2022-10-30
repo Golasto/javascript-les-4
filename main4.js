@@ -1,5 +1,5 @@
 // VOORRAAD ARRAY MET TV'S
-const inventory = [
+const inventory4 = [
     {
         type: '43PUS6504/12',
         name: '4K TV',
@@ -161,38 +161,75 @@ const inventory = [
         sold: 8,
     },
 ];
-//Opdracht 1A
-const tvs = inventory.map((name) => {
-    return name.name
-})
-console.log(tvs)
 //----------------------------------------------------------------------------------------//
-//opdracht 1B
-const runOut = inventory.filter((sold) => {
-    return sold.originalStock < 6
-})
-//Ik wist niet welke methode goed zou zijn dus heb ik er 2 variante gemaakt.
-console.log(runOut)
-const runOut1 = inventory.map((sold) => {
-    return "Er zijn " + sold.sold + ' verkocht van de ' + sold.name +  ' en er waren er ' + sold.originalStock + ' in stock'
-})
-console.log(runOut1)
-//----------------------------------------------------------------------------------------//
-//opdracht 1C
-inventory.map((ambi) => {
-    if (ambi.options.ambiLight === true) {
-        console.log("Deze " + ambi.name + " Heeft Ambilight")
-    } else {
-        console.log("Deze " + ambi.name + " Heeft geen Ambilight")
-    }
-});
-//----------------------------------------------------------------------------------------//
-//opdracht 1D
-function sortPrice() {
-    const price = inventory.sort( (a, b) =>{
-        console.log("Test: " + a.price)
-        return (a.price) - (b.price)
-    })
-    console.log(price())
+//opdracht 4a
+function tv(name) {
+    for (let i = 0; i < inventory4.length; i++) {
+        if (name === inventory4[i].name) {
+            return inventory4[i].brand + " " + inventory4[i].type + " " + inventory4[i].name
+        }
+        }
+
 }
-sortPrice()
+console.log(tv('4K LED TV'))
+//----------------------------------------------------------------------------------------//
+//opdracht 4b
+function price2(price) {
+    return "€" + price + ",-";
+}
+console.log(price2("379"))
+//----------------------------------------------------------------------------------------//
+//opdracht 4c
+function sizez(name) {
+    let sizes = "";
+    for (let i = 0; i < inventory4.length; i++) {
+        if (name === inventory4[i].name) {
+            for (let j = 0; j < inventory4[i].availableSizes.length; j++) {
+                let cm = Math.round(inventory4[i].availableSizes[j] * 2.54);
+                sizes = sizes + inventory4[i].availableSizes[j] + " inch (" + cm + " cm) | ";
+            }
+            sizes = sizes.substring(0, sizes.length - 2);
+        }
+    }
+    return sizes;
+}
+console.log(sizez("4K TV"))
+//----------------------------------------------------------------------------------------//
+//opdracht 4d
+function getDetails(tvType) {
+    let details = ""
+    for (let i = 0; i < inventory4.length; i++) {
+        if (tvType === inventory4[i].type) {
+           let tvName = inventory4[i].brand + " " + inventory4[i].type + " " + inventory4[i].name
+            let price = "€" + inventory4[i].price + ",-"
+            let sizez = ""
+            for (let j = 0; j < inventory4[i].availableSizes.length; j++) {
+                let cm = Math.round(inventory4[i].availableSizes[j] * 2.54);
+                sizez = sizez + inventory4[i].availableSizes[j] + " inch (" + cm + " cm) | ";
+            }
+            sizez = sizez.substring(0, sizez.length - 2);
+            details = tvName + "\n" + price + "\n" + sizez;
+        }
+    }
+    return details;
+}
+console.log(getDetails("43PUS6504/12"))
+//----------------------------------------------------------------------------------------//
+//opdracht 4e
+function getTvDetails() {
+    const tvDetails = inventory4.map((TVD) => {
+            let details = ""
+                    let tvName = TVD.brand + " " + TVD.type + " " + TVD.name
+                    let price = "€" + TVD.price + ",-"
+                    let sizez = ""
+                    for (let j = 0; j < TVD.availableSizes.length; j++) {
+                        let cm = Math.round(TVD.availableSizes[j] * 2.54);
+                        sizez = sizez + TVD.availableSizes[j] + " inch (" + cm + " cm) | ";
+                    }
+                    sizez = sizez.substring(0, sizez.length - 2);
+                    details = tvName + "\n" + price + "\n" + sizez;
+            return details;
+    })
+    return tvDetails
+}
+console.log(getTvDetails())
