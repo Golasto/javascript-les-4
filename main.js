@@ -190,8 +190,9 @@ inventory.map((ambi) => {
 //opdracht 1D
 function sortPrice() {
     const price = inventory.sort( (a, b) =>{
-        return parseFloat(a.price) - parseFloat(b.price)
+        console.log("Test: " + a.price)
+        return (a.price) - (b.price)
     })
-    console.log(sortPrice())
+    console.log(price())
 }
-
+sortPrice()

@@ -162,7 +162,74 @@ const inventory4 = [
     },
 ];
 //----------------------------------------------------------------------------------------//
+//opdracht 4a
+function tv(name) {
+    for (let i = 0; i < inventory4.length; i++) {
+        if (name === inventory4[i].name) {
+            return inventory4[i].brand + " " + inventory4[i].type + " " + inventory4[i].name
+        }
+        }
 
+}
+console.log(tv('4K LED TV'))
 //----------------------------------------------------------------------------------------//
-
+//opdracht 4b
+function price2(price) {
+    return "€" + price + ",-";
+}
+console.log(price2("379"))
 //----------------------------------------------------------------------------------------//
+//opdracht 4c
+function sizez(name) {
+    let sizes = "";
+    for (let i = 0; i < inventory4.length; i++) {
+        if (name === inventory4[i].name) {
+            for (let j = 0; j < inventory4[i].availableSizes.length; j++) {
+                let cm = Math.round(inventory4[i].availableSizes[j] * 2.54);
+                sizes = sizes + inventory4[i].availableSizes[j] + " inch (" + cm + " cm) | ";
+            }
+            sizes = sizes.substring(0, sizes.length - 2);
+        }
+    }
+    return sizes;
+}
+console.log(sizez("4K TV"))
+//----------------------------------------------------------------------------------------//
+//opdracht 4d
+function getDetails(tvType) {
+    let details = ""
+    for (let i = 0; i < inventory4.length; i++) {
+        if (tvType === inventory4[i].type) {
+           let tvName = inventory4[i].brand + " " + inventory4[i].type + " " + inventory4[i].name
+            let price = "€" + inventory4[i].price + ",-"
+            let sizez = ""
+            for (let j = 0; j < inventory4[i].availableSizes.length; j++) {
+                let cm = Math.round(inventory4[i].availableSizes[j] * 2.54);
+                sizez = sizez + inventory4[i].availableSizes[j] + " inch (" + cm + " cm) | ";
+            }
+            sizez = sizez.substring(0, sizez.length - 2);
+            details = tvName + "\n" + price + "\n" + sizez;
+        }
+    }
+    return details;
+}
+console.log(getDetails("43PUS6504/12"))
+//----------------------------------------------------------------------------------------//
+//opdracht 4e
+function getTvDetails() {
+    const tvDetails = inventory4.map((TVD) => {
+            let details = ""
+                    let tvName = TVD.brand + " " + TVD.type + " " + TVD.name
+                    let price = "€" + TVD.price + ",-"
+                    let sizez = ""
+                    for (let j = 0; j < TVD.availableSizes.length; j++) {
+                        let cm = Math.round(TVD.availableSizes[j] * 2.54);
+                        sizez = sizez + TVD.availableSizes[j] + " inch (" + cm + " cm) | ";
+                    }
+                    sizez = sizez.substring(0, sizez.length - 2);
+                    details = tvName + "\n" + price + "\n" + sizez;
+            return details;
+    })
+    return tvDetails
+}
+console.log(getTvDetails())
